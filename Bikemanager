@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>إدارة حجز الدراجات</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap');
+
+  :root {
+    --bg: #f5f7fb;          /* خلفية الصفحة - رمادي فاتح جداً ومريح للعين */
+    --surface: #ffffff;      /* الأسطح والبطاقات - أبيض ناصع */
+    --surface2: #ebedef;     /* الأزرار والحقول - رمادي فاتح */
+    --border: #dee2e6;       /* الحدود - رمادي متوسط الوضوح */
+    --accent: #1877f2;       /* اللون الأساسي - أزرق احترافي */
+    --green: #28a745;
+    --red: #dc3545;
+    --yellow: #f39c12;
+    --text: #212529;         /* النص الأساسي - أسود غامق */
+    --muted: #6c757d;        /* نص ثانوي - رمادي غامق */
+    --radius: 12px;
+  }
+
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Cairo', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--surface);
+    border-bottom: 2px solid var(--border);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .header h1 { font-size: 18px; font-weight: 900; color: var(--accent); letter-spacing: 1px; }
+  .header .time-display { font-size: 13px; color: var(--muted); }
+  .server-btn {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-family: 'Cairo', sans-serif;
+    font-size: 12px;
+    cursor: pointer;
+  }
+  .server-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* TABS */
+  .tabs {
+    display: flex;
+    overflow-x: auto;
+    background: var(--surface);
+    border-bottom: 2px solid var(--border);
+    padding: 0 8px;
+    gap: 2px;
+    scrollbar-width: none;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab {
+    flex-shrink: 0;
+    padding: 10px 14px;
+    font-size: 13px;
+    font-family: 'Cairo', sans-serif;
+    font-weight: 600;
+    color: var(--muted);
+    border: none;
+    background: none;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all .2s;
+    white-space: nowrap;
+  }
+  .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+  .tab:hover:not(.active) { color: var(--text); }
+  .tab .badge {
+    display: inline-block;
+    background: var(--surface2);
+    border-radius: 10px;
+    font-size: 11px;
+    padding: 1px 6px;
+    margin-right: 4px;
+  }
+  .tab.active .badge { background: var(--accent); color: #fff; }
+
+  /* CONTENT */
+  .content { padding: 12px; }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* GRID */
+  .bikes-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 7px;
+  }
+
+  /* BIKE CARD */
+  .bike-card {
+    background: var(--surface);
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    padding: 8px 4px 6px;
+    text-align: center;
+    cursor: pointer;
+    transition: all .15s;
+    user-select: none;
+    position: relative;
+    min-height: 78px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .bike-card:active { transform: scale(0.96); }
+  .bike-card.available { border-color: var(--green); }
+  .bike-card.booked { border-color: #555; }
+  .bike-card.finished { border-color: var(--red); }
+  .bike-card.special { border-color: var(--yellow); }
+
+  .bike-icon { font-size: 20px; margin-bottom: 2px; }
+  .bike-label {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 20px;
+    margin-bottom: 3px;
+  }
+  .available .bike-label { background: rgba(34,197,94,.18); color: var(--green); }
+  .booked .bike-label { background: rgba(255,255,255,.08); color: #bbb; }
+  .finished .bike-label { background: rgba(239,68,68,.18); color: var(--red); }
+  .special .bike-label { background: rgba(245,158,11,.15); color: var(--yellow); }
+
+  .bike-timer {
+    font-size: 10px;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  .bike-timer.running { color: var(--yellow); }
+  .bike-timer.finished { color: var(--red); font-weight: 700; }
+
+  .bike-booked-at {
+    font-size: 9px;
+    color: var(--muted);
+    margin-top: 1px;
+  }
+
+  /* MODAL */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.75);
+    z-index: 200;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--surface);
+    border-radius: 18px 18px 0 0;
+    width: 100%;
+    max-width: 540px;
+    padding: 20px 18px 30px;
+    border-top: 2px solid var(--border);
+    animation: slideUp .2s ease;
+  }
+  @keyframes slideUp { from { transform: translateY(60px); opacity: 0; } }
+  .modal-handle { width: 40px; height: 4px; background: var(--border); border-radius: 4px; margin: 0 auto 14px; }
+  .modal-title { font-size: 17px; font-weight: 700; margin-bottom: 4px; }
+  .modal-sub { font-size: 12px; color: var(--muted); margin-bottom: 16px; }
+
+  .modal-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+  .modal-btn {
+    padding: 13px 8px;
+    border-radius: var(--radius);
+    border: 2px solid var(--border);
+    background: var(--surface2);
+    color: var(--text);
+    font-family: 'Cairo', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .modal-btn:active { transform: scale(0.97); }
+  .modal-btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .modal-btn.success { background: rgba(34,197,94,.15); border-color: var(--green); color: var(--green); }
+  .modal-btn.danger { background: rgba(239,68,68,.12); border-color: var(--red); color: var(--red); }
+  .modal-btn.warning { background: rgba(245,158,11,.12); border-color: var(--yellow); color: var(--yellow); }
+  .modal-btn.full { grid-column: 1/-1; }
+
+  /* SWAP MODAL */
+  .swap-list { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px; max-height: 220px; overflow-y: auto; margin-top: 8px; }
+  .swap-item {
+    background: var(--surface2);
+    border: 2px solid var(--green);
+    border-radius: 8px;
+    padding: 8px 4px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--green);
+    cursor: pointer;
+  }
+  .swap-item:active { transform: scale(0.95); }
+
+  /* ADJUST TIME */
+  .adjust-row { display: flex; align-items: center; justify-content: center; gap: 14px; margin: 14px 0; }
+  .adj-btn {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    background: var(--surface2);
+    color: var(--text);
+    font-size: 22px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .adj-btn:active { transform: scale(0.9); }
+  .adj-val { font-size: 22px; font-weight: 900; color: var(--accent); min-width: 70px; text-align: center; }
+
+  /* MANUAL INPUT */
+  .manual-input {
+    width: 100%;
+    background: var(--surface2);
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text);
+    font-family: 'Cairo', sans-serif;
+    font-size: 16px;
+    padding: 10px 14px;
+    text-align: center;
+    margin-bottom: 10px;
+    outline: none;
+  }
+  .manual-input:focus { border-color: var(--accent); }
+
+  /* SERVER MODAL */
+  .server-modal {
+    background: var(--surface);
+    border-radius: 14px;
+    width: 88%;
+    max-width: 360px;
+    padding: 22px 18px;
+    margin: auto;
+  }
+  .server-modal input {
+    width: 100%;
+    background: var(--surface2);
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text);
+    font-family: 'Cairo', sans-serif;
+    font-size: 14px;
+    padding: 10px 12px;
+    margin: 8px 0 4px;
+    outline: none;
+  }
+  .server-modal input:focus { border-color: var(--accent); }
+  .server-modal label { font-size: 12px; color: var(--muted); display: block; margin-top: 10px; }
+
+  /* SYNC INDICATOR */
+  .sync-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--green);
+    display: inline-block;
+    margin-left: 5px;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+  .sync-dot.offline { background: var(--red); animation: none; }
+
+  /* SECTION LABEL */
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 12px 0 7px;
+  }
+
+  /* EMPTY STATE */
+  .empty-state {
+    text-align: center;
+    color: var(--muted);
+    padding: 40px 20px;
+    font-size: 14px;
+  }
+
+  /* FINISHED LIST */
+  .finished-list { display: flex; flex-direction: column; gap: 8px; }
+  .finished-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-right: 4px solid var(--red);
+    border-radius: 8px;
+    padding: 10px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .finished-item .fi-name { font-weight: 700; font-size: 14px; }
+  .finished-item .fi-time { font-size: 12px; color: var(--red); font-weight: 700; }
+  .finished-item .fi-at { font-size: 11px; color: var(--muted); }
+
+  /* STATUS LEGEND */
+  .legend { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
+  .legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--muted); }
+  .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 4px; height: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div>
+    <h1>🚲 Bike Manager</h1>
+  </div>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <span id="clockDisplay" class="time-display"></span>
+    <span class="sync-dot" id="syncDot"></span>
+    <button class="server-btn" onclick="openServerModal()">⚙ سيرفر</button>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs" id="tabBar">
+  <button class="tab active" onclick="switchTab('all')" id="tab-all">الكل <span class="badge" id="badge-all">150</span></button>
+  <button class="tab" onclick="switchTab('available')" id="tab-available">متاح <span class="badge" id="badge-available">0</span></button>
+  <button class="tab" onclick="switchTab('booked')" id="tab-booked">محجوز <span class="badge" id="badge-booked">0</span></button>
+  <button class="tab" onclick="switchTab('finished')" id="tab-finished">منتهي <span class="badge" id="badge-finished">0</span></button>
+  <button class="tab" onclick="switchTab('p')" id="tab-p">P <span class="badge" id="badge-p">5</span></button>
+  <button class="tab" onclick="switchTab('sh')" id="tab-sh">SH <span class="badge" id="badge-sh">5</span></button>
+  <button class="tab" onclick="switchTab('g')" id="tab-g">G <span class="badge" id="badge-g">5</span></button>
+  <button class="tab" onclick="switchTab('c')" id="tab-c">C <span class="badge" id="badge-c">5</span></button>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+  <!-- ALL -->
+  <div class="tab-panel active" id="panel-all">
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div>متاح</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#888"></div>محجوز</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div>منتهي</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--yellow)"></div>خاص</div>
+    </div>
+    <div class="bikes-grid" id="grid-all"></div>
+  </div>
+
+  <!-- AVAILABLE -->
+  <div class="tab-panel" id="panel-available">
+    <div class="bikes-grid" id="grid-available"></div>
+    <div class="empty-state" id="empty-available" style="display:none">لا توجد دراجات متاحة</div>
+  </div>
+
+  <!-- BOOKED -->
+  <div class="tab-panel" id="panel-booked">
+    <div class="bikes-grid" id="grid-booked"></div>
+    <div class="empty-state" id="empty-booked" style="display:none">لا توجد دراجات محجوزة</div>
+  </div>
+
+  <!-- FINISHED -->
+  <div class="tab-panel" id="panel-finished">
+    <div class="finished-list" id="list-finished"></div>
+    <div class="empty-state" id="empty-finished" style="display:none">لا توجد دراجات منتهية</div>
+  </div>
+
+  <!-- P -->
+  <div class="tab-panel" id="panel-p">
+    <div class="section-label">دراجات VIP - P</div>
+    <div class="bikes-grid" id="grid-p"></div>
+  </div>
+
+  <!-- SH -->
+  <div class="tab-panel" id="panel-sh">
+    <div class="section-label">دراجات SH</div>
+    <div class="bikes-grid" id="grid-sh"></div>
+  </div>
+
+  <!-- G -->
+  <div class="tab-panel" id="panel-g">
+    <div class="section-label">دراجات G</div>
+    <div class="bikes-grid" id="grid-g"></div>
+  </div>
+
+  <!-- C -->
+  <div class="tab-panel" id="panel-c">
+    <div class="section-label">دراجات C</div>
+    <div class="bikes-grid" id="grid-c"></div>
+  </div>
+</div>
+
+<!-- MAIN MODAL -->
+<div class="modal-overlay" id="mainModal" onclick="closeIfOverlay(event)">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <div class="modal-title" id="modalTitle">دراجة #1</div>
+    <div class="modal-sub" id="modalSub">متاحة</div>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<!-- SERVER MODAL -->
+<div class="modal-overlay" id="serverModal" onclick="closeIfOverlay(event)">
+  <div class="modal" style="border-radius:14px;margin:auto;max-width:400px;">
+    <div class="modal-handle"></div>
+    <div class="modal-title">إعدادات السيرفر والأمان</div>
+    <div class="modal-sub">إعدادات الاتصال وصلاحيات الإدارة</div>
+    
+    <div class="server-modal">
+      <label>عنوان IP أو Domain</label>
+      <input type="text" id="serverAddr" placeholder="192.168.1.100" value="">
+      
+      <label>رقم المنفذ (Port)</label>
+      <input type="number" id="serverPort" placeholder="3000" value="3000">
+      
+      <hr style="border:0; border-top:1px solid var(--border); margin:15px 0;">
+      
+      <label>رمز الدخول (المسؤول)</label>
+      <div class="server-modal">
+      <input type="password" id="serverKey" placeholder="أدخل الرمز السري هنا" style="font-family: sans-serif;">
+      </div>
+
+
+    <div class="modal-btns" style="margin-top:12px;">
+      <button class="modal-btn success" onclick="saveServerConfig()">💾 حفظ الإعدادات</button>
+      <button class="modal-btn danger" onclick="closeModal('serverModal')">إلغاء</button>
+    </div>
+    
+    <div style="margin-top:14px;padding:10px;background:var(--surface2);border-radius:8px;font-size:11px;color:var(--muted);line-height:1.7;">
+      <b style="color:var(--accent)">ملاحظة الأمن:</b><br>
+      - رمز الأمان مطلوب فقط عند محاولة "إلغاء حجز" مفعل.<br>
+      - تأكد من حفظ الرمز لتتمكن من إدارة الدراجات من هذا الجهاز.
+    </div>
+  </div>
+</div>
+
+<!-- SWAP MODAL -->
+<div class="modal-overlay" id="swapModal" onclick="closeIfOverlay(event)">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <div class="modal-title">تبديل دراجة</div>
+    <div class="modal-sub">اختر دراجة متاحة للتبديل</div>
+    <div class="swap-list" id="swapList"></div>
+    <div style="margin-top:12px;">
+      <button class="modal-btn danger full" onclick="closeModal('swapModal')">إلغاء</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADJUST TIME MODAL -->
+<div class="modal-overlay" id="adjustModal" onclick="closeIfOverlay(event)">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <div class="modal-title">تعديل الوقت</div>
+    <div class="modal-sub" id="adjustSub"></div>
+    <div class="adjust-row">
+      <button class="adj-btn" onclick="changeAdjust(-5)">−</button>
+      <div class="adj-val"><span id="adjustVal">0</span> د</div>
+      <button class="adj-btn" onclick="changeAdjust(5)">+</button>
+    </div>
+    <div style="font-size:11px;color:var(--muted);text-align:center;margin-bottom:14px;">يزيد أو يقلل الوقت بمقدار 5 دقائق</div>
+    <div class="modal-btns">
+      <button class="modal-btn success" onclick="applyAdjust()">✓ تطبيق</button>
+      <button class="modal-btn danger" onclick="closeModal('adjustModal')">إلغاء</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===== STATE =====
+let bikes = [];
+let currentBikeId = null;
+let adjustDelta = 0;
+let timerInterval = null;
+let serverConfig = JSON.parse(localStorage.getItem('serverConfig') || '{}');
+let state = JSON.parse(localStorage.getItem('bikeState') || 'null');
+
+// رمز الأمان الرئيسي
+const MASTER_CODE = "1975";
+
+// ===== INIT BIKES =====
+function initBikes() {
+  if (state) { bikes = state; return; }
+  bikes = [];
+  const special = [
+    {prefix:'p', count:5, group:'p'},
+    {prefix:'sh', count:5, group:'sh'},
+    {prefix:'g', count:5, group:'g'},
+    {prefix:'c', count:5, group:'c'},
+  ];
+  let specialIds = [];
+  special.forEach(sg => {
+    for(let i=1;i<=sg.count;i++) {
+      specialIds.push({id: sg.prefix+i, group: sg.group});
+    }
+  });
+
+  for(let i=1;i<=150;i++) {
+    bikes.push({
+      id: 'b'+i,
+      name: '#'+i,
+      status: 'available',
+      group: 'regular',
+      bookedAt: null,
+      duration: 0,
+      endTime: null,
+      isManual: false,
+    });
+  }
+  specialIds.forEach(sp => {
+    bikes.push({
+      id: sp.id,
+      name: sp.id.toUpperCase(),
+      status: 'available',
+      group: sp.group,
+      bookedAt: null,
+      duration: 0,
+      endTime: null,
+      isManual: false,
+    });
+  });
+  saveState();
+}
+
+function saveState() {
+  localStorage.setItem('bikeState', JSON.stringify(bikes));
+  syncToServer();
+}
+
+function getBike(id) { return bikes.find(b => b.id === id); }
+
+// ===== RENDER =====
+function renderAll() {
+  updateBadges();
+  renderGrid('all', bikes);
+  renderGrid('available', bikes.filter(b => b.status === 'available'));
+  renderGrid('booked', bikes.filter(b => b.status === 'booked'));
+  renderFinishedList();
+  renderSpecialGrid('p');
+  renderSpecialGrid('sh');
+  renderSpecialGrid('g');
+  renderSpecialGrid('c');
+}
+
+function renderGrid(panelId, list) {
+  const el = document.getElementById('grid-'+panelId);
+  if(!el) return;
+  el.innerHTML = '';
+  list.forEach(b => {
+    el.appendChild(makeBikeCard(b));
+  });
+  ['available','booked'].forEach(type => {
+    const em = document.getElementById('empty-'+type);
+    const gr = document.getElementById('grid-'+type);
+    if(em && gr) {
+      const count = gr.children.length;
+      em.style.display = count === 0 ? 'block' : 'none';
+    }
+  });
+}
+
+function renderSpecialGrid(group) {
+  const el = document.getElementById('grid-'+group);
+  if(!el) return;
+  el.innerHTML = '';
+  bikes.filter(b => b.group === group).forEach(b => {
+    el.appendChild(makeBikeCard(b));
+  });
+}
+
+function renderFinishedList() {
+  const el = document.getElementById('list-finished');
+  const em = document.getElementById('empty-finished');
+  const list = bikes.filter(b => b.status === 'finished');
+  el.innerHTML = '';
+  if(list.length === 0) {
+    em.style.display = 'block';
+    return;
+  }
+  em.style.display = 'none';
+  list.forEach(b => {
+    const d = document.createElement('div');
+    d.className = 'finished-item';
+    const bookedTime = b.bookedAt ? new Date(b.bookedAt).toLocaleTimeString('ar-SA',{hour:'2-digit',minute:'2-digit'}) : '--';
+    const dur = b.isManual ? 'يدوي' : formatDuration(b.duration);
+    d.innerHTML = `
+      <div>
+        <div class="fi-name">🚲 ${b.name}</div>
+        <div class="fi-at">حُجز: ${bookedTime} | مدة: ${dur}</div>
+      </div>
+      <div class="fi-time">منتهي</div>
+    `;
+    d.onclick = () => openBikeModal(b.id);
+    el.appendChild(d);
+  });
+}
+
+function makeBikeCard(b) {
+  const card = document.createElement('div');
+  card.className = 'bike-card ' + b.status + (b.group !== 'regular' ? ' special' : '');
+  card.id = 'card-'+b.id;
+
+  const icon = b.group !== 'regular' ? '⭐' : '🚲';
+  let timerHtml = '';
+  let bookedAtHtml = '';
+
+  if(b.status === 'booked' && !b.isManual && b.endTime) {
+    const rem = Math.max(0, b.endTime - Date.now());
+    timerHtml = `<div class="bike-timer running" id="timer-${b.id}">${formatTime(rem)}</div>`;
+    const bt = b.bookedAt ? new Date(b.bookedAt).toLocaleTimeString('ar-SA',{hour:'2-digit',minute:'2-digit'}) : '';
+    bookedAtHtml = `<div class="bike-booked-at">${bt}</div>`;
+  } else if(b.status === 'booked' && b.isManual) {
+    const bt = b.bookedAt ? new Date(b.bookedAt).toLocaleTimeString('ar-SA',{hour:'2-digit',minute:'2-digit'}) : '';
+    timerHtml = `<div class="bike-timer running">يدوي</div>`;
+    bookedAtHtml = `<div class="bike-booked-at">${bt}</div>`;
+  } else if(b.status === 'finished') {
+    timerHtml = `<div class="bike-timer finished">منتهي</div>`;
+  }
+
+  card.innerHTML = `
+    <div class="bike-icon">${icon}</div>
+    <div class="bike-label">${b.name}</div>
+    ${timerHtml}
+    ${bookedAtHtml}
+  `;
+  card.onclick = () => openBikeModal(b.id);
+  return card;
+}
+
+function formatTime(ms) {
+  if(ms <= 0) return '00:00';
+  const s = Math.floor(ms/1000);
+  const m = Math.floor(s/60);
+  const ss = s%60;
+  return `${String(m).padStart(2,'0')}:${String(ss).padStart(2,'0')}`;
+}
+
+function formatDuration(sec) {
+  if(!sec) return '--';
+  const m = Math.floor(sec/60);
+  return m + ' د';
+}
+
+// ===== MODAL =====
+function openBikeModal(id) {
+  currentBikeId = id;
+  const b = getBike(id);
+  if(!b) return;
+  const modal = document.getElementById('mainModal');
+  document.getElementById('modalTitle').textContent = '🚲 دراجة ' + b.name;
+
+  const bookedTime = b.bookedAt ? new Date(b.bookedAt).toLocaleTimeString('ar-SA',{hour:'2-digit',minute:'2-digit',second:'2-digit'}) : '--';
+  let subText = '';
+  if(b.status === 'available') subText = '✅ متاحة';
+  else if(b.status === 'booked') subText = `🔴 محجوزة منذ ${bookedTime}`;
+  else subText = `⏰ انتهت الجلسة | حُجزت: ${bookedTime}`;
+
+  document.getElementById('modalSub').textContent = subText;
+
+  const body = document.getElementById('modalBody');
+  body.innerHTML = '';
+
+  if(b.status === 'available') {
+    body.innerHTML = `
+      <div class="modal-btns">
+        <button class="modal-btn primary" onclick="bookBike(30)">⏱ 30 دقيقة</button>
+        <button class="modal-btn primary" onclick="bookBike(60)">⏱ 60 دقيقة</button>
+        <button class="modal-btn warning" onclick="showManualInput()">✏ يدوي</button>
+        <button class="modal-btn" onclick="closeModal('mainModal')">إغلاق</button>
+      </div>
+      <div id="manualSection" style="display:none;margin-top:12px;">
+        <input class="manual-input" type="number" id="manualMin" placeholder="أدخل عدد الدقائق" min="1" max="999">
+        <div class="modal-btns">
+          <button class="modal-btn success full" onclick="bookManual()">✓ حجز يدوي</button>
+        </div>
+      </div>
+    `;
+  } else if(b.status === 'booked') {
+    const rem = b.isManual ? '---' : formatTime(Math.max(0, b.endTime - Date.now()));
+    body.innerHTML = `
+      <div style="text-align:center;margin-bottom:12px;">
+        <div style="font-size:28px;font-weight:900;color:var(--yellow);font-variant-numeric:tabular-nums;" id="liveTimer">${rem}</div>
+        <div style="font-size:11px;color:var(--muted);">الوقت المتبقي</div>
+      </div>
+      <div class="modal-btns">
+        <button class="modal-btn warning" onclick="openAdjustModal()">⏰ تعديل الوقت</button>
+        <button class="modal-btn" onclick="openSwapModal()">🔄 تبديل</button>
+        <button class="modal-btn danger full" onclick="cancelBooking()">✕ إلغاء الحجز</button>
+      </div>
+    `;
+    if(!b.isManual && b.endTime) {
+      const lt = document.getElementById('liveTimer');
+      if(lt) {
+        const iv = setInterval(() => {
+          if(!document.getElementById('liveTimer')) { clearInterval(iv); return; }
+          const r = Math.max(0, b.endTime - Date.now());
+          document.getElementById('liveTimer').textContent = formatTime(r);
+        }, 500);
+      }
+    }
+  } else {
+    body.innerHTML = `
+      <div class="modal-btns">
+        <button class="modal-btn success" onclick="resetBike()">🔄 إعادة تعيين</button>
+        <button class="modal-btn primary" onclick="bookBike(30)">⏱ حجز جديد 30د</button>
+        <button class="modal-btn primary" onclick="bookBike(60)">⏱ حجز جديد 60د</button>
+        <button class="modal-btn danger" onclick="closeModal('mainModal')">إغلاق</button>
+      </div>
+    `;
+  }
+  modal.classList.add('open');
+}
+
+function showManualInput() { document.getElementById('manualSection').style.display = 'block'; }
+
+// دالة الحجز السريع (30 أو 60 دقيقة)
+function bookBike(minutes) {
+  const savedKey = localStorage.getItem('adminKey');
+
+  // التحقق من الرمز قبل الحجز
+  if (savedKey !== MASTER_CODE) {
+    alert("❌ عذراً، يجب إدخال رمز أمان المسؤول في الإعدادات أولاً لتتمكن من الحجز.");
+    return;
+  }
+
+  const b = getBike(currentBikeId);
+  if(!b) return;
+  
+  b.status = 'booked';
+  b.bookedAt = Date.now();
+  b.duration = minutes * 60;
+  b.endTime = Date.now() + minutes * 60 * 1000;
+  b.isManual = false;
+  
+  saveState();
+  renderAll();
+  closeModal('mainModal');
+}
+
+// دالة الحجز اليدوي
+function bookManual() {
+  const savedKey = localStorage.getItem('adminKey');
+
+  // التحقق من الرمز قبل الحجز اليدوي
+  if (savedKey !== MASTER_CODE) {
+    alert("❌ عذراً، يجب إدخال رمز أمان المسؤول في الإعدادات أولاً لتتمكن من الحجز.");
+    return;
+  }
+
+  const min = parseInt(document.getElementById('manualMin').value);
+  if(!min || min < 1) return;
+  
+  const b = getBike(currentBikeId);
+  if(!b) return;
+  
+  b.status = 'booked';
+  b.bookedAt = Date.now();
+  b.duration = min * 60;
+  b.endTime = Date.now() + min * 60 * 1000;
+  b.isManual = false;
+  
+  saveState();
+  renderAll();
+  closeModal('mainModal');
+}
+
+
+function resetBike() {
+    const b = getBike(currentBikeId);
+    if(!b) return;
+    b.status = 'available';
+    b.bookedAt = null;
+    b.duration = 0;
+    b.endTime = null;
+    b.isManual = false;
+    saveState();
+    renderAll();
+    closeModal('mainModal');
+}
+
+function cancelBooking() {
+  // جلب الرمز المسجل في الإعدادات
+  const savedKey = localStorage.getItem('adminKey');
+
+  // التحقق من الرمز ضد الرمز الرئيسي 1975
+  if (savedKey !== MASTER_CODE) {
+    alert("❌ رمز الأمان غير صحيح! يرجى ضبط الرمز الصحيح في إعدادات السيرفر أولاً.");
+    return;
+  }
+
+  const confirmCancel = confirm("هل أنت متأكد من رغبتك في إلغاء هذا الحجز؟");
+  if (confirmCancel) {
+    const b = getBike(currentBikeId);
+    if(!b) return;
+    b.status = 'available';
+    b.bookedAt = null;
+    b.duration = 0;
+    b.endTime = null;
+    b.isManual = false;
+    saveState();
+    renderAll();
+    closeModal('mainModal');
+  }
+}
+
+// ===== SWAP =====
+function openSwapModal() {
+  const list = document.getElementById('swapList');
+  list.innerHTML = '';
+  bikes.filter(b => b.status === 'available' && b.id !== currentBikeId).forEach(b => {
+    const d = document.createElement('div');
+    d.className = 'swap-item';
+    d.textContent = b.name;
+    d.onclick = () => performSwap(b.id);
+    list.appendChild(d);
+  });
+  if(list.children.length === 0) {
+    list.innerHTML = '<div style="grid-column:1/-1;text-align:center;color:var(--muted);padding:20px;">لا توجد دراجات متاحة</div>';
+  }
+  closeModal('mainModal');
+  document.getElementById('swapModal').classList.add('open');
+}
+
+function performSwap(targetId) {
+  const src = getBike(currentBikeId);
+  const tgt = getBike(targetId);
+  if(!src || !tgt) return;
+  tgt.status = src.status;
+  tgt.bookedAt = src.bookedAt;
+  tgt.duration = src.duration;
+  tgt.endTime = src.endTime;
+  tgt.isManual = src.isManual;
+  src.status = 'available';
+  src.bookedAt = null;
+  src.duration = 0;
+  src.endTime = null;
+  src.isManual = false;
+  saveState();
+  renderAll();
+  closeModal('swapModal');
+}
+
+// ===== ADJUST =====
+function openAdjustModal() {
+  adjustDelta = 0;
+  document.getElementById('adjustVal').textContent = '0';
+  const b = getBike(currentBikeId);
+  document.getElementById('adjustSub').textContent = 'دراجة ' + (b ? b.name : '');
+  closeModal('mainModal');
+  document.getElementById('adjustModal').classList.add('open');
+}
+
+function changeAdjust(d) {
+  adjustDelta += d;
+  document.getElementById('adjustVal').textContent = adjustDelta;
+}
+
+function applyAdjust() {
+  const b = getBike(currentBikeId);
+  if(!b || !b.endTime) return;
+  b.endTime += adjustDelta * 60 * 1000;
+  if(b.endTime <= Date.now()) b.status = 'finished';
+  saveState();
+  renderAll();
+  closeModal('adjustModal');
+}
+
+// ===== TABS =====
+function switchTab(name) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-'+name).classList.add('active');
+  document.getElementById('panel-'+name).classList.add('active');
+}
+
+// ===== BADGES =====
+function updateBadges() {
+  const avail = bikes.filter(b => b.status === 'available').length;
+  const booked = bikes.filter(b => b.status === 'booked').length;
+  const fin = bikes.filter(b => b.status === 'finished').length;
+  document.getElementById('badge-all').textContent = bikes.length;
+  document.getElementById('badge-available').textContent = avail;
+  document.getElementById('badge-booked').textContent = booked;
+  document.getElementById('badge-finished').textContent = fin;
+  document.getElementById('badge-p').textContent = bikes.filter(b=>b.group==='p').length;
+  document.getElementById('badge-sh').textContent = bikes.filter(b=>b.group==='sh').length;
+  document.getElementById('badge-g').textContent = bikes.filter(b=>b.group==='g').length;
+  document.getElementById('badge-c').textContent = bikes.filter(b=>b.group==='c').length;
+}
+
+// ===== MODALS =====
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+function closeIfOverlay(e) { if(e.target.classList.contains('modal-overlay')) e.target.classList.remove('open'); }
+function openServerModal() { document.getElementById('serverModal').classList.add('open'); }
+
+function saveServerConfig() {
+  serverConfig = {
+    addr: document.getElementById('serverAddr').value,
+    port: document.getElementById('serverPort').value,
+  };
+  // حفظ الرمز السري بشكل منفصل
+  const enteredKey = document.getElementById('serverKey').value;
+  localStorage.setItem('adminKey', enteredKey);
+  
+  localStorage.setItem('serverConfig', JSON.stringify(serverConfig));
+  alert("✅ تم حفظ الإعدادات ورمز الأمان");
+  closeModal('serverModal');
+  tryConnect();
+}
+
+// ===== TIMER TICK =====
+function tick() {
+  const now = Date.now();
+  let changed = false;
+  bikes.forEach(b => {
+    if(b.status === 'booked' && !b.isManual && b.endTime && b.endTime <= now) {
+      b.status = 'finished';
+      changed = true;
+    }
+  });
+  if(changed) { saveState(); renderAll(); }
+  bikes.forEach(b => {
+    if(b.status === 'booked' && !b.isManual && b.endTime) {
+      const el = document.getElementById('timer-'+b.id);
+      if(el) el.textContent = formatTime(Math.max(0, b.endTime - now));
+    }
+  });
+  document.getElementById('clockDisplay').textContent = new Date().toLocaleTimeString('ar-SA',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+}
+
+// ===== SERVER SYNC =====
+let ws = null;
+function tryConnect() {
+  const currentHost = window.location.hostname || 'localhost';
+  const targetAddr = serverConfig.addr || currentHost;
+  const targetPort = serverConfig.port || 3000;
+  const url = `ws://${targetAddr}:${targetPort}`;
+  try {
+    ws = new WebSocket(url);
+    ws.onopen = () => {
+      document.getElementById('syncDot').classList.remove('offline');
+      ws.send(JSON.stringify({type:'sync', data: bikes}));
+    };
+    ws.onmessage = (e) => {
+      try {
+        const msg = JSON.parse(e.data);
+        if(msg.type === 'update') { bikes = msg.data; localStorage.setItem('bikeState', JSON.stringify(bikes)); renderAll(); }
+      } catch(err){}
+    };
+    ws.onclose = () => { document.getElementById('syncDot').classList.add('offline'); setTimeout(tryConnect, 3000); };
+    ws.onerror = () => { document.getElementById('syncDot').classList.add('offline'); };
+  } catch(e) {}
+}
+
+function syncToServer() {
+  if(ws && ws.readyState === WebSocket.OPEN) {
+    ws.send(JSON.stringify({type:'update', data: bikes}));
+  }
+}
+
+// ===== BOOT =====
+initBikes();
+renderAll();
+setInterval(tick, 1000);
+tick();
+tryConnect();
+
+// ===== الأسطر الأخيرة التي طلبتها لإصلاح حفظ الإعدادات وتنبيهات التنقل =====
+
+// استرجاع الإعدادات المحفوظة وتعبئة الخانات تلقائياً عند فتح الصفحة
+if(serverConfig.addr) document.getElementById('serverAddr').value = serverConfig.addr;
+if(serverConfig.port) document.getElementById('serverPort').value = serverConfig.port;
+if(localStorage.getItem('adminKey')) document.getElementById('serverKey').value = localStorage.getItem('adminKey');
+
+// العودة لأعلى الصفحة عند التنقل بين التبويبات
+document.querySelectorAll('.tab').forEach(t => {
+  t.addEventListener('click', () => window.scrollTo(0,0));
+});
+
+// هذا هو وسم الإغلاق النهائي
+</script>
+</body>
+</html>
+

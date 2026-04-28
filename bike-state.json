@@ -1,0 +1,1702 @@
+[
+  {
+    "id": "b1",
+    "name": "#1",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b2",
+    "name": "#2",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b3",
+    "name": "#3",
+    "status": "booked",
+    "group": "regular",
+    "bookedAt": 1777330442187,
+    "duration": 1800,
+    "endTime": 1777332242187,
+    "isManual": false
+  },
+  {
+    "id": "b4",
+    "name": "#4",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b5",
+    "name": "#5",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b6",
+    "name": "#6",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b7",
+    "name": "#7",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b8",
+    "name": "#8",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b9",
+    "name": "#9",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b10",
+    "name": "#10",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b11",
+    "name": "#11",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b12",
+    "name": "#12",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b13",
+    "name": "#13",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b14",
+    "name": "#14",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b15",
+    "name": "#15",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b16",
+    "name": "#16",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b17",
+    "name": "#17",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b18",
+    "name": "#18",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b19",
+    "name": "#19",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b20",
+    "name": "#20",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b21",
+    "name": "#21",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b22",
+    "name": "#22",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b23",
+    "name": "#23",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b24",
+    "name": "#24",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b25",
+    "name": "#25",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b26",
+    "name": "#26",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b27",
+    "name": "#27",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b28",
+    "name": "#28",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b29",
+    "name": "#29",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b30",
+    "name": "#30",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b31",
+    "name": "#31",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b32",
+    "name": "#32",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b33",
+    "name": "#33",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b34",
+    "name": "#34",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b35",
+    "name": "#35",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b36",
+    "name": "#36",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b37",
+    "name": "#37",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b38",
+    "name": "#38",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b39",
+    "name": "#39",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b40",
+    "name": "#40",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b41",
+    "name": "#41",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b42",
+    "name": "#42",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b43",
+    "name": "#43",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b44",
+    "name": "#44",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b45",
+    "name": "#45",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b46",
+    "name": "#46",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b47",
+    "name": "#47",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b48",
+    "name": "#48",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b49",
+    "name": "#49",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b50",
+    "name": "#50",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b51",
+    "name": "#51",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b52",
+    "name": "#52",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b53",
+    "name": "#53",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b54",
+    "name": "#54",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b55",
+    "name": "#55",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b56",
+    "name": "#56",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b57",
+    "name": "#57",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b58",
+    "name": "#58",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b59",
+    "name": "#59",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b60",
+    "name": "#60",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b61",
+    "name": "#61",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b62",
+    "name": "#62",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b63",
+    "name": "#63",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b64",
+    "name": "#64",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b65",
+    "name": "#65",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b66",
+    "name": "#66",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b67",
+    "name": "#67",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b68",
+    "name": "#68",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b69",
+    "name": "#69",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b70",
+    "name": "#70",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b71",
+    "name": "#71",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b72",
+    "name": "#72",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b73",
+    "name": "#73",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b74",
+    "name": "#74",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b75",
+    "name": "#75",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b76",
+    "name": "#76",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b77",
+    "name": "#77",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b78",
+    "name": "#78",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b79",
+    "name": "#79",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b80",
+    "name": "#80",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b81",
+    "name": "#81",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b82",
+    "name": "#82",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b83",
+    "name": "#83",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b84",
+    "name": "#84",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b85",
+    "name": "#85",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b86",
+    "name": "#86",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b87",
+    "name": "#87",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b88",
+    "name": "#88",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b89",
+    "name": "#89",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b90",
+    "name": "#90",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b91",
+    "name": "#91",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b92",
+    "name": "#92",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b93",
+    "name": "#93",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b94",
+    "name": "#94",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b95",
+    "name": "#95",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b96",
+    "name": "#96",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b97",
+    "name": "#97",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b98",
+    "name": "#98",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b99",
+    "name": "#99",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b100",
+    "name": "#100",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b101",
+    "name": "#101",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b102",
+    "name": "#102",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b103",
+    "name": "#103",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b104",
+    "name": "#104",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b105",
+    "name": "#105",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b106",
+    "name": "#106",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b107",
+    "name": "#107",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b108",
+    "name": "#108",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b109",
+    "name": "#109",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b110",
+    "name": "#110",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b111",
+    "name": "#111",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b112",
+    "name": "#112",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b113",
+    "name": "#113",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b114",
+    "name": "#114",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b115",
+    "name": "#115",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b116",
+    "name": "#116",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b117",
+    "name": "#117",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b118",
+    "name": "#118",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b119",
+    "name": "#119",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b120",
+    "name": "#120",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b121",
+    "name": "#121",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b122",
+    "name": "#122",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b123",
+    "name": "#123",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b124",
+    "name": "#124",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b125",
+    "name": "#125",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b126",
+    "name": "#126",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b127",
+    "name": "#127",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b128",
+    "name": "#128",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b129",
+    "name": "#129",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b130",
+    "name": "#130",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b131",
+    "name": "#131",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b132",
+    "name": "#132",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b133",
+    "name": "#133",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b134",
+    "name": "#134",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b135",
+    "name": "#135",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b136",
+    "name": "#136",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b137",
+    "name": "#137",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b138",
+    "name": "#138",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b139",
+    "name": "#139",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b140",
+    "name": "#140",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b141",
+    "name": "#141",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b142",
+    "name": "#142",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b143",
+    "name": "#143",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b144",
+    "name": "#144",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b145",
+    "name": "#145",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b146",
+    "name": "#146",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b147",
+    "name": "#147",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b148",
+    "name": "#148",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b149",
+    "name": "#149",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "b150",
+    "name": "#150",
+    "status": "available",
+    "group": "regular",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "p1",
+    "name": "P1",
+    "status": "available",
+    "group": "p",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "p2",
+    "name": "P2",
+    "status": "available",
+    "group": "p",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "p3",
+    "name": "P3",
+    "status": "available",
+    "group": "p",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "p4",
+    "name": "P4",
+    "status": "available",
+    "group": "p",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "p5",
+    "name": "P5",
+    "status": "available",
+    "group": "p",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "sh1",
+    "name": "SH1",
+    "status": "available",
+    "group": "sh",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "sh2",
+    "name": "SH2",
+    "status": "available",
+    "group": "sh",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "sh3",
+    "name": "SH3",
+    "status": "available",
+    "group": "sh",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "sh4",
+    "name": "SH4",
+    "status": "available",
+    "group": "sh",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "sh5",
+    "name": "SH5",
+    "status": "available",
+    "group": "sh",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "g1",
+    "name": "G1",
+    "status": "available",
+    "group": "g",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "g2",
+    "name": "G2",
+    "status": "available",
+    "group": "g",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "g3",
+    "name": "G3",
+    "status": "available",
+    "group": "g",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "g4",
+    "name": "G4",
+    "status": "available",
+    "group": "g",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "g5",
+    "name": "G5",
+    "status": "available",
+    "group": "g",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "c1",
+    "name": "C1",
+    "status": "available",
+    "group": "c",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "c2",
+    "name": "C2",
+    "status": "available",
+    "group": "c",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "c3",
+    "name": "C3",
+    "status": "available",
+    "group": "c",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "c4",
+    "name": "C4",
+    "status": "available",
+    "group": "c",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  },
+  {
+    "id": "c5",
+    "name": "C5",
+    "status": "available",
+    "group": "c",
+    "bookedAt": null,
+    "duration": 0,
+    "endTime": null,
+    "isManual": false
+  }
+]

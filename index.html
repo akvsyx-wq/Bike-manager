@@ -956,29 +956,74 @@ function tick() {
 
 // ===== SERVER SYNC =====
 let ws = null;
+let wsReconnectTimer = null;
+let pingInterval = null;
+
 function tryConnect() {
+  // اكتشاف العنوان تلقائياً من الـ URL الحالي
   const currentHost = window.location.hostname || 'localhost';
-  const targetAddr = serverConfig.addr || currentHost;
-  const targetPort = serverConfig.port || 3000;
-  const url = `ws://${targetAddr}:${targetPort}`;
+  const currentPort = window.location.port || '3000';
+  const isSecure = window.location.protocol === 'https:';
+
+  const savedConfig = JSON.parse(localStorage.getItem('serverConfig') || '{}');
+  const targetAddr = savedConfig.addr || currentHost;
+  const targetPort = savedConfig.port || currentPort || 3000;
+  
+  // استخدم wss مع https و ws مع http
+  const wsProtocol = isSecure ? 'wss' : 'ws';
+  const url = `${wsProtocol}://${targetAddr}:${targetPort}`;
+
   try {
+    if (ws) { ws.close(); }
     ws = new WebSocket(url);
+
     ws.onopen = () => {
       document.getElementById('syncDot').classList.remove('offline');
+      document.getElementById('syncDot').title = 'متصل بالسيرفر ✓';
+      // أرسل الحالة الحالية عند الاتصال
       ws.send(JSON.stringify({type:'sync', data: bikes}));
+      
+      // ping كل 25 ثانية للحفاظ على الاتصال
+      clearInterval(pingInterval);
+      pingInterval = setInterval(() => {
+        if(ws && ws.readyState === WebSocket.OPEN) {
+          ws.send(JSON.stringify({type:'ping'}));
+        }
+      }, 25000);
     };
+
     ws.onmessage = (e) => {
       try {
         const msg = JSON.parse(e.data);
-        if(msg.type === 'update') { bikes = msg.data; localStorage.setItem('bikeState', JSON.stringify(bikes)); renderAll(); }
+        if(msg.type === 'update') {
+          bikes = msg.data;
+          localStorage.setItem('bikeState', JSON.stringify(bikes));
+          renderAll();
+        }
       } catch(err){}
     };
-    ws.onclose = () => { document.getElementById('syncDot').classList.add('offline'); setTimeout(tryConnect, 3000); };
-    ws.onerror = () => { document.getElementById('syncDot').classList.add('offline'); };
-  } catch(e) {}
+
+    ws.onclose = () => {
+      document.getElementById('syncDot').classList.add('offline');
+      document.getElementById('syncDot').title = 'غير متصل - جاري إعادة الاتصال...';
+      clearInterval(pingInterval);
+      clearTimeout(wsReconnectTimer);
+      wsReconnectTimer = setTimeout(tryConnect, 3000);
+    };
+
+    ws.onerror = () => {
+      document.getElementById('syncDot').classList.add('offline');
+    };
+
+  } catch(e) {
+    document.getElementById('syncDot').classList.add('offline');
+    clearTimeout(wsReconnectTimer);
+    wsReconnectTimer = setTimeout(tryConnect, 5000);
+  }
 }
 
 function syncToServer() {
+  // بث التحديث للسيرفر ليوزعه على جميع المتصلين
   if(ws && ws.readyState === WebSocket.OPEN) {
     ws.send(JSON.stringify({type:'update', data: bikes}));
   }
